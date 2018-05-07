@@ -1,0 +1,55 @@
+{
+    "brand": "Apple",
+    "model": "iPhone X",
+    "color": ["Space Grey", "Silver"],
+    "size": {
+        "height": 143.6,
+        "width": 70.9,
+        "depth": 7.7,
+        "weight": 174
+    },
+    "screen": {
+        "width": 1125,
+        "height": 2436,
+        "ppi": 458,
+        "ratio": [19.5, 9],
+        "inch": 5.8,
+        "contrast": "1000000:1"
+    },
+    "CPU": {
+        "chipset": "Apple A11 Bionic",
+        "core": "Hexa-core (2x Monsoon + 4x Mistral)",
+        "frequency": "2.39 GHz"
+    },
+    "memory": {
+        "RAM": "3GB",
+        "ROM": ["64GB", "256GB"],
+        "card_slot": []
+    },
+    "network": {
+        "dualsim": "",
+        "2G": {"GSM": [850, 900, 1800, 1900]},
+        "3G": {},
+        "4G": {}
+    },
+    "battery": {
+        "capacity": "",
+        "removable": false
+    },
+    "system": {
+        "os": "iOS",
+        "version": "11.1.1"
+    },
+    "waterproof": "IP67",
+    "security": "Face ID",
+    "audio": {
+        "chips": "",
+        "jack": false,
+        "radio": false
+    },
+    "launch": {
+        "announce": "09/2017",
+        "release_date": "10/2017",
+        "price": [8588, 9888]
+    }
+}
