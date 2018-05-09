@@ -10,7 +10,7 @@ for i in data:
         "brand": i["brand"],
         "model": i["model"],
         "announced": {
-            "year": "",
+            "year": re.findall("\d{4}", i["Announced"])[0],
             "month": ""
         },
         "apperance": {
@@ -83,7 +83,10 @@ for i in data:
         },
         "fingerprint": i["Fingerprint"]
     }
-
+    try:
+        temp["announced"]["month"] = re.findall("(January|February|March|April|May|June|July|August|September|October|November|December)", i["Announced"])[0]
+    except:
+        pass
     new_data.append(temp)
 
 with open("formatted_data.json", "w") as output_file:
