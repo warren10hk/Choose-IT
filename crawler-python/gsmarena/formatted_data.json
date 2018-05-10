@@ -4560,7 +4560,8 @@
                 ]
             },
             "4G_bands": {
-                "FD-LTE": []
+                "FD-LTE": [700, 850, 900, 1800, 2100, 2600],
+                "TD-LTE": [2300]
             },
             "SIM1": "Nano-SIM",
             "SIM2": "Micro-SIM",
@@ -4656,7 +4657,8 @@
                 ]
             },
             "4G_bands": {
-                "FD-LTE": []
+                "FD-LTE": [800, 850, 900, 1800, 2100, 2600],
+                "TD-LTE": [2300]
             },
             "SIM1": "Nano-SIM",
             "SIM2": "Micro-SIM",
@@ -32115,7 +32117,8 @@
                 ]
             },
             "4G_bands": {
-                "FD-LTE": []
+                "FD-LTE": [1800, 2100, 2600],
+                "TD-LTE": [2300, 2600]
             },
             "SIM1": "Nano-SIM",
             "SIM2": "Nano-SIM",
