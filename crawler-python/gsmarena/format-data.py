@@ -18,7 +18,7 @@ for i in data:
             "height": i["Dimension (Height)"],
             "width": i["Dimension (Width)"],
             "weight": i["Weight"],
-            "colors": i["Colors"]
+            "colors": i["Colors"].split(',')
         },
         "display": {
             "screen": i["Screen"],
@@ -36,11 +36,11 @@ for i in data:
             "ROM": i["ROM"],
             "camera": {
                 "front": {
-                    "resolution": [],
+                    "resolution": [i["Front Camera 1"], i["Front Camera 2"]],
                     "aperture": i["Front Camera f"]
                 },
                 "rear":  {
-                    "resolution": [],
+                    "resolution": [i["Rear Camera 1 Resolution"], i["Rear Camera 2"], i["Rear Camera 3"]],
                     "aperture": i["Rear Camera 1 f"]
                 }
             },
