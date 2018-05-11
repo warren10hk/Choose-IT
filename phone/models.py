@@ -16,7 +16,7 @@ class phone(models.Model):
         blank = True
     )
     Model = models.CharField(
-        default = "No Information"
+        default = "No Information",
         max_length = 250,
         blank = True
     )
@@ -54,7 +54,9 @@ class phone(models.Model):
         blank = True
     )
     Screen_ratio = models.CharField(
-        blank = True
+        blank = True,
+        max_length = 250,
+        default = "No Information"
     )
     Screen_to_body_ratio = models.FloatField(
         blank = True
@@ -69,38 +71,46 @@ class phone(models.Model):
         blank = True
     )
     Cpu  = models.CharField(
-        blank = True
+        max_length = 250,
+        blank = True,
+        default = "No Information"
     )
     Cpu_specification = models.CharField(
         blank = True,
+        max_length = 250,
         default = "No Information"
     )
     Gpu = models.CharField(
         blank = True,
-        default = "No Information"
+        default = "No Information",
+        max_length = 250
     )
     Ram = models.CharField(
         blank = True,
-        default = "No Information"
+        default = "No Information",
+        max_length = 250
     )
     #character?
     Rom = models.CharField(
         blank = True,
-        default = "No Information"
+        default = "No Information",
+        max_length = 250
     )
     Front_camera_resolution = models.FloatField(
         blank = False
     )
     Front_camera_aperture = models.CharField(
         blank = True,
-        default = "No Information"
+        default = "No Information",
+        max_length = 250
     )
     Rear_camera_resolution = models.FloatField(
         blank = True
     )
     Rear_camera_aperture = models.CharField(
         blank = True,
-        default = "No Information"
+        default = "No Information",
+        max_length = 250
 
     )
     Battery_Capacity = models.IntegerField(
@@ -111,10 +121,12 @@ class phone(models.Model):
     )
     Radio = models.CharField(
         blank = True,
+        max_length = 250,
         default = "No Information"
     )
     Usb = models.CharField(
         blank = True,
+        max_length = 250,
         default = "No Information"
     )
     Micro_sd = models.BooleanField(
@@ -127,6 +139,7 @@ class phone(models.Model):
 
     Sim_card = models.CharField(
         blank = True,
+        max_length = 250,
         default = "No Information"
     )
 
@@ -140,13 +153,14 @@ class phone(models.Model):
     )
     WLan = models.CharField(
         blank = True,
+        max_length = 250,
         default = "No Information"
 
     )
     Gps = models.BooleanField(
         blank = True
     )
-    Bluetooth = models.CharField(
+    Bluetooth = models.BooleanField(
         blank = True
     )
     NFC = models.BooleanField(
@@ -158,10 +172,12 @@ class phone(models.Model):
     )
     Operating_System = models.CharField(
         blank = True,
+        max_length = 250,
         default = "No Information"
     )
     Version = models.CharField(
         blank = True,
+        max_length = 250,
         default = "No Information"
     )
     Fingerprint_Authentication = models.BooleanField(
