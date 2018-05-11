@@ -88,25 +88,25 @@ class phone(models.Model):
         blank = True,
         default = "No Information"
     )
-    Camfront = models.FloatField(
+    Front_camera_resolution = models.FloatField(
         blank = False
     )
-    Camfrontape = models.CharField(
+    Front_camera_aperture = models.CharField(
         blank = True,
         default = "No Information"
     )
-    Camrear = models.FloatField(
+    Rear_camera_resolution = models.FloatField(
         blank = True
     )
-    Camrearape = models.CharField(
+    Rear_camera_aperture = models.CharField(
         blank = True,
         default = "No Information"
 
     )
-    Batcapacity = models.IntegerField(
+    Battery_Capacity = models.IntegerField(
         blank = True
     )
-    Batremovable = models.BooleanField(
+    Removable_Battery = models.BooleanField(
         blank = True
     )
     Radio = models.CharField(
