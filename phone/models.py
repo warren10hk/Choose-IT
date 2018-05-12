@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+
 def dirtoup(imgobj, filename):
     return '{0}/{1}/{2}'.format(imgobj.Brand, imgobj.Model, filename)
 # Create your models here.
@@ -121,16 +122,6 @@ class Phone(models.Model):
     Removable_Battery = models.BooleanField(
         blank = True
     )
-    Radio = models.CharField(
-        blank = True,
-        max_length = 250,
-        default = "No Information"
-    )
-    Usb = models.CharField(
-        blank = True,
-        max_length = 250,
-        default = "No Information"
-    )
     Micro_sd = models.BooleanField(
         blank = True
     )
@@ -152,6 +143,17 @@ class Phone(models.Model):
     Hybrid_Sim_card = models.BooleanField(
         blank = True
 
+    )
+
+    Radio = models.CharField(
+        blank = True,
+        max_length = 250,
+        default = "No Information"
+    )
+    Usb = models.CharField(
+        blank = True,
+        max_length = 250,
+        default = "No Information"
     )
     WLan = models.CharField(
         blank = True,
@@ -190,3 +192,6 @@ class Phone(models.Model):
         blank = True,
         upload_to = dirtoup
     )
+
+    def nameit(self):
+        return [(attr.name, attr.value_to_string(self)) for attr in Phone._meta.fields]
