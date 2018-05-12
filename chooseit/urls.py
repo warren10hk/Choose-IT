@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index),
     url(r'^apply/', appview.register),
-    url(r'^login/', appview.loginfunc)
+    url(r'^login/', appview.loginfunc),
+    url(r'^logout/', appview.logoutfunc)
 ]

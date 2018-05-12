@@ -13,15 +13,23 @@ from .forms import registerform, loginform
 from .models import Appuser
 # Create your views here.
 
+def logoutfunc(req):
+    print("in logout")
+    print (req.user.is_authenticated)
+    logout(req)
+    return redirect('/')
+
 def loginfunc(req):
+    print("in login")
+    print (req.user.is_authenticated)
     if req.method == "POST":
         form = loginform(req.POST)
         if form.is_valid():
             usr = form.cleaned_data.get('Username')
             pw = form.cleaned_data.get('Password')
             log = authenticate(username = usr, password = pw)
-            login(req, log)
             if req.user.is_authenticated:
+                login(req, log)
                 return redirect('/')
     else: 
         form = loginform()
