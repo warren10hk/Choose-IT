@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from bs4 import BeautifulSoup as bs
+from django.http import JsonResponse
 
 from django.shortcuts import render, redirect
 from django.core.exceptions import ObjectDoesNotExist
@@ -13,7 +14,17 @@ from django.contrib.auth import(
 	logout,
 )
 import requests
+import json
+from django.core import serializers
 # Create your views here.
+
+def returnmodel(req):
+    brand = req.GET.get('brand', None)
+    model = Phone.objects.filter(Brand = brand).only("Model")
+    # model = [rem[0] for rem in model]
+    # print model
+    model_s = serializers.serialize('json', model)
+    return JsonResponse(model_s, safe=False)
 
 def filterfunc(req):
     # should accessing form info here

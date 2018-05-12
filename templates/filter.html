@@ -1,11 +1,35 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 {% block content %}
+
+    <form method = "POST" enctype = "mutipart/form-data">
     <div class = "jumbotron" style = "text-align:center">
         <p>We wish to learn more about your <b>current phone</b>, please provide us with</p>
         <h4>Brand</h4>
+            <select class = "form-control drop" id = "drop">
+              {% for model in modellist %}
+                  <option value = '{{ model }}'>{{ model }}</option>
+              {% endfor %}
+        </div>
     </div>
-    {% for model in modellist %}
+    <script>
+        $("#drop").on("change", function(){
+            var brand = $(this).val();
+            $.ajax({
+                url: '/ajax/getmodel/',
+                data: {
+                    "brand" : brand
+                },
+                dataType: 'json',
+                success: function(data){
+                    console.log("received data and printing it out like\n");
+                    console.log(data);
+                }
+            })
+        });
+    </script>
+    </form>
+    
 
-    {% endfor %}
+
 {% endblock %}
