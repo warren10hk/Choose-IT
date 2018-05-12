@@ -1,12 +1,27 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 {% block content %}
-    <div class = "col-sm-4">
+<br><br> 
+    <div class = "col-sm-6">
         <div class = "card">
             <img class = "card-img-top" src = "{{phoneinfo.Picture.url}}">
             <div class = "card-body">
-                <h5>{{phoneinfo.Model}}</h5>
-                <p class = "card-text">Insert table here</p>
+                <h3>{{phoneinfo.Model}}</h3>
+                <p class = "card-text">
+                    <table class = "table">
+                        <thead><tr><th scope = "col">Properties</th><th>Value</th></tr></thead>
+                        <tbody>
+                            {% for name, val in phoneinfo.nameit %}
+                            <tr>
+                                {% if not name == 'pid' and not name == 'Picture' %}
+                                <th scope = "row">{{ name }}</th>
+                                <td>{{ val }}</td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </p>
             </div>
         </div>
     </div>
