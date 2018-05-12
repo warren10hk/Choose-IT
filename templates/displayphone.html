@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+    <div class = "col-sm-4">
+        <div class = "card">
+            <img class = "card-img-top" src = "{{phoneinfo.Picture.url}}">
+            <div class = "card-body">
+                <h5>{{phoneinfo.Model}}</h5>
+                <p class = "card-text">Insert table here</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

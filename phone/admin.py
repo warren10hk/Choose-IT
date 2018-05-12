@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.contrib import admin
 
-from .models import phone
+from .models import Phone
 # Register your models here.
 
-admin.site.register(phone)
+admin.site.register(Phone)

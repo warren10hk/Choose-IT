@@ -6,7 +6,7 @@ from django.db import models
 def dirtoup(imgobj, filename):
     return '{0}/{1}/{2}'.format(imgobj.Brand, imgobj.Model, filename)
 # Create your models here.
-class phone(models.Model):
+class Phone(models.Model):
     pid = models.AutoField(
         auto_created = True,
         primary_key = True,
