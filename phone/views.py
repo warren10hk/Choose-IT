@@ -20,10 +20,10 @@ from django.core import serializers
 
 # returning content of model
 def returnmcontent(req):
-    print "is inside returnmcontent"
+    print ("is inside returnmcontent")
     pk = req.GET.get('pk', None)
     model = Phone.objects.filter(pid = pk)
-    print model
+    print (model)
     model_s = serializers.serialize('json', list(model), fields=('Screen_size'))
     return JsonResponse(model_s, safe=False)
     
@@ -41,7 +41,7 @@ def filterfunc(req):
         # should access form info here
 
         # here it reads the filter value which can further trigger Phone.object.filter(Screen_size = variable)
-        print req.POST.get("screen")
+        print (req.POST.get("screen"))
         return redirect('/')
     modeltype = list(Phone.objects.order_by().values_list('Brand').distinct())
     modeltype = [rem[0] for rem in modeltype]
