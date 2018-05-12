@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+def dirtoup(imgobj, filename):
+    return '{0}/{1}/{2}'.format(imgobj.Brand, imgobj.Model, filename)
 # Create your models here.
 class phone(models.Model):
     pid = models.AutoField(
@@ -182,4 +184,9 @@ class phone(models.Model):
     )
     Fingerprint_Authentication = models.BooleanField(
         blank = True
+    )
+    Picture = models.ImageField(
+        default = "default.png",
+        blank = True,
+        upload_to = dirtoup
     )
