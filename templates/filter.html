@@ -3,7 +3,8 @@
 {% block content %}
 
     <form method = "POST" enctype = "mutipart/form-data">
-    <div class = "jumbotron" style = "text-align:center">
+    <div class = "row">
+    <div class = "jumbotron col-sm-12" style = "text-align:center">
         <p>We wish to learn more about your <b>current phone</b>, please provide us with</p>
         <h4>Brand</h4>
             <select class = "form-control drop" id = "drop">
@@ -22,6 +23,62 @@
         
         </div>
     </div>
+    <div class = "collapse" id = "cri">
+        <div class = "row col-sm-12">
+            <!-- <div class="card col-sm-6">
+                <img class = "card-img" src = "https://cellphoneunlock.net/wp-content/uploads/2015/07/sizes-matters.png" alt="Card image">
+                <div class = "card-text">
+                    <h5>Screen Size</h5>
+                </div>
+            </div> -->
+            <div class="card text-white bg-info col-sm-4" style="max-height: 30rem;">
+                <div class="card-header">Screen Size</div>
+                <div class="card-body">
+                  <h5 class="card-title">Your current screen size is : <p id = "size"></p>Do you want the screen size to be</h5>
+                  <p class="card-text"> 
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="screen" id="screen1" value=">" checked>
+                        <label class="form-check-label" for="screen1">
+                          (>) bigger than 
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="screen" id="screen2" value="<" checked>
+                        <label class="form-check-label" for="screen2">
+                          (<) less than 
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="screen" id="screen3" value="~" checked>
+                        <label class="form-check-label" for="screen3">
+                          (~) about the same as
+                        </label>
+                    </div>
+                    current  
+                    </p>
+                </div>
+            </div>
+            <div class="card bg-light col-sm-4">
+                <div class="card-header">Header</div>
+                <div class="card-body">
+                  <h5 class="card-title">Info card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card text-white bg-danger col-sm-4">
+                 <div class="card-header">Header</div>
+                <div class="card-body">
+                <h5 class="card-title">Info card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                </div>
+        </div>  
+        <br>
+        <input type = "submit" value = "Find my phone!" name = "find" id = "find" class = "btn  btn-dark">
+
+    </div>
+  
+    </form>
     <script>
         
         $("#drop").on("change", function(){
@@ -48,9 +105,34 @@
                     })
                     $("#mlist").collapse();
                 }
-            })
+            });
 
         });
+
+        $("#model").on("change", function(){
+            var pk = $(this).val();
+            console.log(pk);
+            // optional showing user the current info
+            var brand = "Apple";
+            $.ajax({
+                url: '/ajax/getmcontent',
+                data: {
+                    "pk" : pk
+                },
+                dataType: 'json',
+                success: function(data){
+                    console.log("received data and printing it out like\n");
+                    console.log(data);
+                    var result = JSON.parse(data);
+                    console.log(result[0].fields.Screen_size);
+                    document.getElementById("size").innerHTML = result[0].fields.Screen_size;
+    
+                }
+            });
+
+            $("#cri").collapse();
+        
+        })
     </script>
     </form>
     
