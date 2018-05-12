@@ -4,3 +4,4 @@ phone/__pycache__/
 appuser/*.pyc
 chooseit/*.pyc
 phone/*.pyc
+db.sqlite3
