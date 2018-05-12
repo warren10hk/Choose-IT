@@ -1,0 +1,6 @@
+appuser/__pycache__/
+chooseit/__pycache__/
+phone/__pycache__/
+appuser/*.pyc
+chooseit/*.pyc
+phone/*.pyc

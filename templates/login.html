@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load bootstrap4 %}
+
 {% block content %}
     <form method = "POST" enctype = "mutipart/form-data">
         {% csrf_token %}
@@ -8,5 +8,5 @@
     </form>
     <br>
     <br>
-    <p>Note :You will be redirected to this page again if your identity cannot be verified</p>
+    <p>Note: You will be redirected to this page again if your identity cannot be verified</p>
 {% endblock %}

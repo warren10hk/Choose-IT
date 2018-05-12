@@ -24,3 +24,6 @@ def displayone(req, pid):
         "phoneinfo" : phoneobj
     }
     return render(req, "displayphone.html", ctx)
+
+def choosemyphone(req):
+    return render(req, "choosemyphone.html", {'accstatus' : req.user.is_authenticated})
