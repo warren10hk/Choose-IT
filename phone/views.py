@@ -62,3 +62,6 @@ def displayone(req, pid):
         "utube" : linklist
     }
     return render(req, "displayphone.html", ctx)
+
+def choosemyphone(req):
+    return render(req, "choosemyphone.html", {'accstatus' : req.user.is_authenticated})

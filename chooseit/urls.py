@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^apply/', appview.register),
     url(r'^login/', appview.loginfunc),
     url(r'^logout/', appview.logoutfunc),
+    url(r'^choosemyphone/', phoneview.choosemyphone),
     url(r'^phonedis/(?P<pid>[-\d]+)$', phoneview.displayone),
-    url(r'^filter/', phoneview.filterfunc)
+    url(r'^filter/', phoneview.filterfunc) 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
