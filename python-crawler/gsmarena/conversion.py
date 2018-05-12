@@ -7,7 +7,7 @@ with open("formatted_data.json", "r") as input_file:
 
 for counter, i in enumerate(data):
     temp = {
-        "model": "phone",
+        "model": "phone.phone",
         "pk": counter+1,
         "fields": {
             "Brand": i["brand"],
