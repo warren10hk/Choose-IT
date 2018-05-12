@@ -9,10 +9,28 @@ from django.contrib.auth import(
     logout
 )
 
-from .forms import registerform
+from .forms import registerform, loginform
 from .models import Appuser
 # Create your views here.
 
+def loginfunc(req):
+    if req.method == "POST":
+        form = loginform(req.POST)
+        if form.is_valid():
+            usr = form.cleaned_data.get('Username')
+            pw = form.cleaned_data.get('Password')
+            log = authenticate(username = usr, password = pw)
+            login(req, log)
+            if req.user.is_authenticated:
+                return redirect('/')
+    else: 
+        form = loginform()
+    
+    ctx = {
+        'accstatus' : req.user.is_authenticated,
+        'form' : form
+    } 
+    return render(req, 'login.html', ctx)
 
 def register(req):
     if req.method == "POST":
@@ -30,7 +48,7 @@ def register(req):
             user = Appuser.objects.create(user = log, email = mail)
             login(req, log)
             # u.save()
-            
+            # redirect to homepage
             return redirect('/')
     else:
         # form is not yet generated 

@@ -8,3 +8,9 @@ class registerform(UserCreationForm):
         model = User
         # the 3 fields essential for user registration
         fields = ['username', 'Email', 'password1', 'password2']
+
+class loginform(forms.Form):
+    Username = forms.CharField(max_length = 250, error_messages = {'required': 'Username must not be blank'})
+    Password = forms.CharField(widget = forms.PasswordInput())
+    class Meta:
+        model = User
