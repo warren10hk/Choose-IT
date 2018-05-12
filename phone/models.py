@@ -99,16 +99,20 @@ class Phone(models.Model):
         default = "No Information",
         max_length = 250
     )
-    Front_camera_resolution = models.FloatField(
-        blank = False
+    Front_camera_resolution = models.CharField(
+        blank = True,
+        max_length = 250,
+        default = "No Information"
     )
     Front_camera_aperture = models.CharField(
         blank = True,
         default = "No Information",
         max_length = 250
     )
-    Rear_camera_resolution = models.FloatField(
-        blank = True
+    Rear_camera_resolution = models.CharField(
+        blank = True,
+        max_length = 250,
+        default = "No Information"
     )
     Rear_camera_aperture = models.CharField(
         blank = True,

@@ -18,6 +18,8 @@ import json
 from django.core import serializers
 # Create your views here.
 
+def search(req):
+    pass
 # returning content of model
 def returnmcontent(req):
     print "is inside returnmcontent"
@@ -39,7 +41,6 @@ def returnmodel(req):
 def filterfunc(req):
     if req.method == "POST":
         # should access form info here
-
         # here it reads the filter value which can further trigger Phone.object.filter(Screen_size = variable)
         print req.POST.get("screen")
         return redirect('/')
