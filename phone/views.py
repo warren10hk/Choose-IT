@@ -23,7 +23,7 @@ def returnmodel(req):
     brand = req.GET.get('brand', None)
     model = Phone.objects.filter(Brand = brand)
     # model = [rem[0] for rem in model]
-    print model
+    print (model)
     model_s = serializers.serialize('json', list(model), fields=('Model', 'pid',))
     return JsonResponse(model_s, safe=False)
 
@@ -51,7 +51,7 @@ def displayone(req, pid):
     # crawling youtube related videos list
     initial = "https://www.youtube.com/results?search_query="
     keyword = phoneobj.Model.replace(" ", "+")
-    print "keyword is " + keyword
+    print ("keyword is " + keyword)
     search = requests.get(initial+keyword)
     page = search.text
     soup = bs(page, 'html.parser')
@@ -61,7 +61,7 @@ def displayone(req, pid):
         cur = 'https://www.youtube.com' + link['href']
         linklist.append(cur)
 
-    print linklist
+    print (linklist)
 
     # finding the key title
     # first = ['Depth', 'Display_screen', 'Cpu', 'Front_camera_resolution', 'Battery', 'Micro_sd']
