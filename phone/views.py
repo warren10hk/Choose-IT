@@ -18,12 +18,13 @@ import json
 from django.core import serializers
 # Create your views here.
 
+# returning model of specific brand
 def returnmodel(req):
     brand = req.GET.get('brand', None)
-    model = Phone.objects.filter(Brand = brand).only("Model")
+    model = Phone.objects.filter(Brand = brand)
     # model = [rem[0] for rem in model]
-    # print model
-    model_s = serializers.serialize('json', model)
+    print model
+    model_s = serializers.serialize('json', list(model), fields=('Model', 'pid',))
     return JsonResponse(model_s, safe=False)
 
 def filterfunc(req):
