@@ -15,7 +15,16 @@ from django.contrib.auth import(
 import requests
 # Create your views here.
 
-initial = "https://www.youtube.com/results?search_query="
+def filterfunc(req):
+    # should accessing form info here
+    modeltype = list(Phone.objects.order_by().values_list('Brand').distinct())
+    modeltype = [rem[0] for rem in modeltype]
+    ctx = {
+        "accstatus" : req.user.is_authenticated,
+        "modellist" : modeltype
+
+    }
+    return render(req, 'filter.html', ctx)
 
 def displayone(req, pid):
     # independent page for showing one phones 
@@ -28,6 +37,7 @@ def displayone(req, pid):
     #phone object exist
 
     # crawling youtube related videos list
+    initial = "https://www.youtube.com/results?search_query="
     keyword = phoneobj.Model.replace(" ", "+")
     print "keyword is " + keyword
     search = requests.get(initial+keyword)
