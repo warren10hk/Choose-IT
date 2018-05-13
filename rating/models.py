@@ -17,4 +17,6 @@ class Rating(models.Model):
         to_field = "pid",
         on_delete = models.PROTECT
     )
-    
+    rate = models.IntegerField(
+        default = 1
+    )

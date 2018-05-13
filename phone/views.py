@@ -78,12 +78,10 @@ def displayone(req, pid):
         # only user will create the object
         print("**********")
         print (req.user)
-        Customeraccount.objects.get(user = request.user)
         userobj = Appuser.objects.get(user = req.user)
         r = req.POST.get("rate")
-        Rating.objects.Create(uid = userobj, pid = phoneobj, rate = r)
-        Rating.save()
-
+        print (r)
+        Rating.objects.create(uid = userobj, pid = phoneobj, rate = r)
     #phone object exist
 
     # crawling youtube related videos list

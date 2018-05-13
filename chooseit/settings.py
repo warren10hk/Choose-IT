@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'appuser',
     'phone',
     'rating',
-    'bootstrap4'
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
