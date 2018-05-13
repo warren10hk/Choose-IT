@@ -31,5 +31,6 @@ urlpatterns = [
     url(r'^phonedis/(?P<pid>[-\d]+)$', phoneview.displayone),
     url(r'^filter/', phoneview.filterfunc),
     url(r'^ajax/getmodel/$', phoneview.returnmodel),
-    url(r'^ajax/getmcontent/$',phoneview.returnmcontent)
+    url(r'^ajax/getmcontent/$',phoneview.returnmcontent),
+    url(r'^ajax/getallmodel',phoneview.returnallmodel)
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
