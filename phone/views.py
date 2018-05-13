@@ -16,6 +16,8 @@ from django.contrib.auth import(
 import requests
 import json
 from django.core import serializers
+import urllib
+# import ssl
 # Create your views here.
 
 
@@ -65,16 +67,22 @@ def displayone(req, pid):
     initial = "https://www.youtube.com/results?search_query="
     keyword = phoneobj.Model.replace(" ", "+")
     print ("keyword is " + keyword)
-    search = requests.get(initial+keyword)
+    search = requests.get(initial+keyword+" open box")
     page = search.text
     soup = bs(page, 'html.parser')
     result = soup.findAll('a', attrs={'class':'yt-uix-tile-link'})
     linklist = []
+    # con = ssl._create_unverified_context()
     for link in result:
         cur = 'https://www.youtube.com' + link['href']
-        linklist.append(cur)
+        vidid = link['href'].split("watch?v=", 1)[1]
+        # html = bs(urllib.request.urlopen(cur, context=con))
+        linklist.append((cur, vidid))
 
-    print (linklist)
+    # get only first 10 results
+    linklist = linklist[:10]
+    
+    # print (linklist)
 
     # finding the key title
     # first = ['Depth', 'Display_screen', 'Cpu', 'Front_camera_resolution', 'Battery', 'Micro_sd']
