@@ -5,7 +5,9 @@
 <div class="jumbotron text-center">
 
   <h1>Choose IT right.</h1>
-
+  {% if accstatus %}
+  <p>Hello World, {{ name }}</p>
+  {% endif %}
   <br />
 
   <div class="row justify-content-md-center">

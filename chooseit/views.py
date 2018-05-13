@@ -22,4 +22,4 @@ def index(req):
         return render(req, 'listofphones.html', ctx)
 
 
-    return render(req, 'index.html', {'accstatus' : req.user.is_authenticated})
+    return render(req, 'index.html', {'accstatus' : req.user.is_authenticated, 'name' : req.user.username})
