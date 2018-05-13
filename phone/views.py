@@ -55,7 +55,27 @@ def filterfunc(req):
     if req.method == "POST":
         # should access form info here
         # here it reads the filter value which can further trigger Phone.object.filter(Screen_size = variable)
-        print (req.POST.get("screen"))
+
+        # print (req.POST.get("os"))
+
+        filtering = "Phone.objects.filter("
+        if (req.POST.get("screen") == ">"):
+            filtering += ("Screen_size__gte=" + "0")
+        elif (req.POST.get("screen") == "<"):
+            filtering += ("Screen_size__lte=" + "0")
+        elif (req.POST.get("screen") == "="):
+            filtering += ("Screen_size=" + "0")
+
+        filtering += (", Fingerprint_Authentication" + "=" + req.POST.get("fingerprint")) if (req.POST.get("fingerprint") != "/") else ""
+        filtering += (", Dual_Sim_card" + "=" + req.POST.get("dualsim")) if (req.POST.get("dualsim") != "/") else ""
+        filtering += (", Micro_sd" + "=" + req.POST.get("microsd")) if (req.POST.get("microsd") != "/") else ""
+        if (req.POST.get("battery") == ">"):
+            filtering += (", Battery_Capacity__gte=" + "0") if (req.POST.get("battery") != "/") else ""
+        # filtering += ("Operating_System" + "=" + req.POST.get("os")) if (req.POST.get("os") != "/") else ""
+        filtering += ")"
+
+        exec(filtering)
+        
         return redirect('/')
     modeltype = list(Phone.objects.order_by().values_list('Brand').distinct())
     modeltype = [rem[0] for rem in modeltype]
