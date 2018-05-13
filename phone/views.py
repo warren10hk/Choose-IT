@@ -18,6 +18,14 @@ import json
 from django.core import serializers
 # Create your views here.
 
+# returning all model name in list for autocomplete
+def returnallmodel(req):
+    model_s = []
+    model = list(Phone.objects.order_by().values_list('Model').distinct())
+    for i in model:
+        model_s.append(i[0])
+    # print (model)
+    return JsonResponse(model_s, safe=False)
 
 # returning content of model
 def returnmcontent(req):
