@@ -17,6 +17,10 @@ import requests
 import json
 from django.core import serializers
 import urllib
+from rating.models import Rating
+from phone.models import Phone
+from appuser.models import Appuser
+
 # import ssl
 # Create your views here.
 
@@ -68,6 +72,17 @@ def displayone(req, pid):
         phoneobj = Phone.objects.get(pid = pid)
     except ObjectDoesNotExist:
         return redirect('/')
+
+
+    if req.method == "POST":
+        # only user will create the object
+        print("**********")
+        print (req.user)
+        Customeraccount.objects.get(user = request.user)
+        userobj = Appuser.objects.get(user = req.user)
+        r = req.POST.get("rate")
+        Rating.objects.Create(uid = userobj, pid = phoneobj, rate = r)
+        Rating.save()
 
     #phone object exist
 

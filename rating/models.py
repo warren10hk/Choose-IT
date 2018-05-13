@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 from django.db import models
 from appuser.models import Appuser
-from appuser.models import Phone
+from phone.models import Phone
 
 # Create your models here.
 

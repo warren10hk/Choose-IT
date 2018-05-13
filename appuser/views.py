@@ -27,8 +27,9 @@ def loginfunc(req):
         if form.is_valid():
             usr = form.cleaned_data.get('Username')
             pw = form.cleaned_data.get('Password')
+            print (usr, pw)
             log = authenticate(username = usr, password = pw)
-            if req.user.is_authenticated:
+            if log:
                 login(req, log)
                 return redirect('/')
     else: 
