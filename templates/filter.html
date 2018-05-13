@@ -7,7 +7,7 @@
                 <b>current phone</b>, please provide us with</p>
             <h4>Brand</h4>
             <select class="form-control drop" id="drop">
-                <option value="default" selected="true" disabled>Select Options ...</option>
+                <option value="default" selected="True" disabled>Select Options ...</option>
                 {% for model in modellist %}
                 <option value='{{ model }}'>{{ model }}</option>
                 {% endfor %}
@@ -17,7 +17,7 @@
             <div class="collapse" id="mlist">
                 <h4>Phone Model</h4>
                 <select class="form-control" id="model">
-                    <option value="default" selected="true" disabled>Select Options ...</option>
+                    <option value="default" selected="True" disabled>Select Options ...</option>
                 </select>
             </div>
 
@@ -31,8 +31,10 @@
                 <div class="card-header">Screen Size</div>
                 <div class="card-body">
                     <h5 class="card-title">
-                        Your current screen size is <span id="size"></span>".<br /><br />
-                        Do you want the screen size to be
+                        Your current screen size is
+                        <span id="size"></span>".
+                        <br />
+                        <br /> Do you want the screen size to be
                     </h5>
                     <p class="card-text">
                         <div class="custom-control custom-radio">
@@ -60,16 +62,18 @@
                 <div class="card-header">Fingerprint Authentication</div>
                 <div class="card-body">
                     <h5 class="card-title">
-                        Your current phone <span id="fingerprint"></span> fingerprint authentication.<br /><br />
-                        Do you want the fingerprint function?
+                        Your current phone
+                        <span id="fingerprint"></span> fingerprint authentication.
+                        <br />
+                        <br /> Do you want the fingerprint function?
                     </h5>
                     <p class="card-text">
                         <div class="custom-control custom-radio">
-                            <input class="custom-control-input" type="radio" name="fingerprint" id="fingerprint1" value="true">
+                            <input class="custom-control-input" type="radio" name="fingerprint" id="fingerprint1" value="True">
                             <label class="custom-control-label" for="fingerprint1">Yes</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input class="custom-control-input" type="radio" name="fingerprint" id="fingerprint2" value="false">
+                            <input class="custom-control-input" type="radio" name="fingerprint" id="fingerprint2" value="False">
                             <label class="custom-control-label" for="fingerprint2">No</label>
                         </div>
                         <div class="custom-control custom-radio">
@@ -85,16 +89,18 @@
                 <div class="card-header">Dual SIM Support</div>
                 <div class="card-body">
                     <h5 class="card-title">
-                        Your current phone <span id="dualsim"></span> Dual SIM.<br /><br />
-                        Do you want the Dual SIM function?
+                        Your current phone
+                        <span id="dualsim"></span> Dual SIM.
+                        <br />
+                        <br /> Do you want the Dual SIM function?
                     </h5>
                     <p class="card-text">
                         <div class="custom-control custom-radio">
-                            <input class="custom-control-input" type="radio" name="dualsim" id="dualsim1" value="true">
+                            <input class="custom-control-input" type="radio" name="dualsim" id="dualsim1" value="True">
                             <label class="custom-control-label" for="dualsim1">Yes</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input class="custom-control-input" type="radio" name="dualsim" id="dualsim2" value="false">
+                            <input class="custom-control-input" type="radio" name="dualsim" id="dualsim2" value="False">
                             <label class="custom-control-label" for="dualsim2">No</label>
                         </div>
                         <div class="custom-control custom-radio">
@@ -110,16 +116,18 @@
                 <div class="card-header">External Storage</div>
                 <div class="card-body">
                     <h5 class="card-title">
-                        Your current phone <span id="microsd"></span> MicroSD.<br /><br />
-                        Do you want the phone support MicroSD?
+                        Your current phone
+                        <span id="microsd"></span> MicroSD.
+                        <br />
+                        <br /> Do you want the phone support MicroSD?
                     </h5>
                     <p class="card-text">
                         <div class="custom-control custom-radio">
-                            <input class="custom-control-input" type="radio" name="microsd" id="microsd1" value="true">
+                            <input class="custom-control-input" type="radio" name="microsd" id="microsd1" value="True">
                             <label class="custom-control-label" for="microsd1">Yes</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input class="custom-control-input" type="radio" name="microsd" id="microsd2" value="false">
+                            <input class="custom-control-input" type="radio" name="microsd" id="microsd2" value="False">
                             <label class="custom-control-label" for="microsd2">No</label>
                         </div>
                         <div class="custom-control custom-radio">
@@ -134,8 +142,10 @@
             <div class="card">
                 <div class="card-header">Battery Capacity</div>
                 <div class="card-body">
-                    <h5 class="card-title">Your current phone has a <span id="battery"></span> mAh battery.<br /><br />
-                        Do you want the battery size to be</h5>
+                    <h5 class="card-title">Your current phone has a
+                        <span id="battery"></span> mAh battery.
+                        <br />
+                        <br /> Do you want the battery size to be</h5>
                     <p class="card-text">
                         <div class="custom-control custom-radio">
                             <input class="custom-control-input" type="radio" name="battery" id="battery1" value=">">
@@ -154,8 +164,10 @@
                 <div class="card-header">Operating System</div>
                 <div class="card-body">
                     <h5 class="card-title">
-                        Your current phone is running <span id="os"></span>.<br /><br />
-                        Do you want the operating system to be
+                        Your current phone is running
+                        <span id="os"></span>.
+                        <br />
+                        <br /> Do you want the operating system to be
                     </h5>
                     <p class="card-text">
                         <div class="custom-control custom-checkbox">
@@ -167,16 +179,17 @@
                             <label class="custom-control-label" for="os2">Android</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" name="os" id="os3" value="BlackBerry" checked>
+                            <input class="custom-control-input" type="checkbox" name="os" id="os3" value="BlackBerry OS" checked>
                             <label class="custom-control-label" for="os3">BlackBerry OS</label>
                         </div>
                         <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" name="os" id="os4" value="Windows" checked>
+                            <input class="custom-control-input" type="checkbox" name="os" id="os4" value="Windows Phone" checked>
                             <label class="custom-control-label" for="os4">Windows Phone</label>
                         </div>
                     </p>
                 </div>
             </div>
+            
         </div>
         <div class="container">
             <input type="submit" value="Find my phone!" name="find" id="find" class="btn btn-primary btn-lg btn-block">
@@ -241,7 +254,7 @@
 
                 document.getElementById("size").innerHTML = result[0].fields.Screen_size;
                 document.getElementById("fingerprint").innerHTML = (result[0].fields.Fingerprint_Authentication ? "support" : "do not support");
-                document.getElementById("dualsim").innerHTML =(result[0].fields.Dual_Sim_card ? "support" : "do not support");
+                document.getElementById("dualsim").innerHTML = (result[0].fields.Dual_Sim_card ? "support" : "do not support");
                 document.getElementById("microsd").innerHTML = (result[0].fields.Micro_sd ? "support" : "do not support");
                 document.getElementById("battery").innerHTML = result[0].fields.Battery_Capacity;
                 document.getElementById("os").innerHTML = result[0].fields.Operating_System;
