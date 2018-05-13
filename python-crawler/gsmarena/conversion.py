@@ -66,39 +66,36 @@ for counter, i in enumerate(data):
     except:
         pass
 
-    try:
-        temp["fields"]["2G_GSM"] = ', '.join(map(str,i["connectivity"]["2G_bands"]["GSM"]))
-    except:
-        pass
+    # try:
+    #     temp["fields"]["2G_GSM"] = ', '.join(map(str,i["connectivity"]["2G_bands"]["GSM"]))
+    # except:
+    #     pass
 
-    try:
-        temp["fields"]["2G_CDMA"] = ', '.join(map(str,i["connectivity"]["2G_bands"]["CDMA"]))
-    except:
-        pass
+    # try:
+    #     temp["fields"]["2G_CDMA"] = ', '.join(map(str,i["connectivity"]["2G_bands"]["CDMA"]))
+    # except:
+    #     pass
 
-    try:
-        temp["fields"]["3G_HSDPA"] = ', '.join(map(str,i["connectivity"]["3G_bands"]["HSDPA"]))
-    except:
-        pass
+    # try:
+    #     temp["fields"]["3G_HSDPA"] = ', '.join(map(str,i["connectivity"]["3G_bands"]["HSDPA"]))
+    # except:
+    #     pass
     
-    try:
-        temp["fields"]["3G_CDMA"] = ', '.join(map(str,i["connectivity"]["3G_bands"]["CDMA"]))
-    except:
-        pass
+    # try:
+    #     temp["fields"]["3G_CDMA"] = ', '.join(map(str,i["connectivity"]["3G_bands"]["CDMA"]))
+    # except:
+    #     pass
 
-    try:
-        temp["fields"]["4G_FDLTE"] = ', '.join(map(str,i["connectivity"]["4G_bands"]["FD-LTE"]))
-    except:
-        pass
+    # try:
+    #     temp["fields"]["4G_FDLTE"] = ', '.join(map(str,i["connectivity"]["4G_bands"]["FD-LTE"]))
+    # except:
+    #     pass
 
-    try:
-        temp["fields"]["4G_TDLTE"] = ', '.join(map(str,i["connectivity"]["4G_bands"]["TD-LTE"]))
-    except:
-        pass
+    # try:
+    #     temp["fields"]["4G_TDLTE"] = ', '.join(map(str,i["connectivity"]["4G_bands"]["TD-LTE"]))
+    # except:
+    #     pass
     
-
-    
-
     new_data.append(temp)
 
 with open("formatted_data_new.json", "w") as output_file:
