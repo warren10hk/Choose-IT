@@ -93,6 +93,12 @@
                 dataType: 'json',
                 success: function(data){
                     console.log("received data and printing it out like\n");
+                    var m = document.getElementById("model"); 
+                    while (m.lastChild){
+                        if(m.lastChild.value == "default"){
+                            break;}
+                        m.removeChild(m.lastChild);
+                    }
                     console.log(data);
                     var result = JSON.parse(data);
                     // console.log(result[1].fields.Model);
