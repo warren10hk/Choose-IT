@@ -18,8 +18,9 @@ import json
 from django.core import serializers
 # Create your views here.
 
-def search(req):
-    pass
+def listfunc(req):
+    return render(req, "listofphones.html")
+
 # returning content of model
 def returnmcontent(req):
     print ("is inside returnmcontent")

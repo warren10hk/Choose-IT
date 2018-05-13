@@ -11,7 +11,7 @@
     <div class="row justify-content-md-center">
         <div class="col-6">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Phone Model" aria-label="Phone Model" aria-describedby="phone-model">
+                <input type="text" class="form-control" placeholder="Phone Model" aria-label="Phone Model" aria-describedby="phone-model" name = "searchkeyword">
                 <div class="input-group-append">
                     <button class="btn btn-success" type="button">Search</button>
                 </div>
@@ -19,10 +19,17 @@
         </div>
     </div>
 
+
+
     <a href="/filter" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Personalize Choices</a>
 
+
+    
     <hr class="my-4" />
 
+    {% block thelist %}
+    {% endblock %}
+    
     <div class="card-deck">
     <div class="card">
         <img class="card-img-top" src="https://staticshop.o2.co.uk/product/images/iphone-x-space-grey-sku-header.png?cb=25dc5afb0412fc40a28aa29d82cb53d0" alt="Card image cap">

@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^choosemyphone/', phoneview.choosemyphone),
     url(r'^phonedis/(?P<pid>[-\d]+)$', phoneview.displayone),
     url(r'^filter/', phoneview.filterfunc),
+    url(r'^returnlist/', phoneview.listfunc),
     url(r'^ajax/getmodel/$', phoneview.returnmodel),
     url(r'^ajax/getmcontent/$',phoneview.returnmcontent)
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
