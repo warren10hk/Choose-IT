@@ -1,7 +1,9 @@
 appuser/__pycache__/
 chooseit/__pycache__/
 phone/__pycache__/
+rating/__pycache__/
 appuser/*.pyc
 chooseit/*.pyc
 phone/*.pyc
+rating/*.pyc
 db.sqlite3
