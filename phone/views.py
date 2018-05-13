@@ -27,7 +27,7 @@ def returnmcontent(req):
     pk = req.GET.get('pk', None)
     model = Phone.objects.filter(pid = pk)
     print (model)
-    model_s = serializers.serialize('json', list(model), fields=('Screen_size'))
+    model_s = serializers.serialize('json', list(model), fields=('Screen_size', 'Fingerprint_Authentication', 'Dual_Sim_card', 'Micro_sd', 'Battery_Capacity', 'Operating_System'))
     return JsonResponse(model_s, safe=False)
     
 # returning model of specific brand

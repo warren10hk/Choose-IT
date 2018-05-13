@@ -1,147 +1,261 @@
-{% extends 'base.html' %}
-{% load bootstrap4 %}
-{% block content %}
+{% extends 'base.html' %} {% load bootstrap4 %} {% block content %}
 
-    <form method = "POST" enctype = "mutipart/form-data">
-    <div class = "row">
-    <div class = "jumbotron col-sm-12" style = "text-align:center">
-        <p>We wish to learn more about your <b>current phone</b>, please provide us with</p>
-        <h4>Brand</h4>
-            <select class = "form-control drop" id = "drop">
-             <option value = "default" selected = "true" disabled>Select Options ...</option>
-              {% for model in modellist %}
-                  <option value = '{{ model }}'>{{ model }}</option>
-              {% endfor %}
+<form method="POST" enctype="mutipart/form-data">
+    <div class="row">
+        <div class="jumbotron col-sm-12" style="text-align:center">
+            <p>We wish to learn more about your
+                <b>current phone</b>, please provide us with</p>
+            <h4>Brand</h4>
+            <select class="form-control drop" id="drop">
+                <option value="default" selected="true" disabled>Select Options ...</option>
+                {% for model in modellist %}
+                <option value='{{ model }}'>{{ model }}</option>
+                {% endfor %}
             </select>
-            <br><br>
-        <div class = "collapse" id = "mlist">
-            <h4>Phone Model</h4>
-            <select class = "form-control" id = "model">
-                <option value = "default" selected = "true" disabled>Select Options ...</option>
-            </select>
-        </div>
-        
+            <br>
+            <br>
+            <div class="collapse" id="mlist">
+                <h4>Phone Model</h4>
+                <select class="form-control" id="model">
+                    <option value="default" selected="true" disabled>Select Options ...</option>
+                </select>
+            </div>
+
         </div>
     </div>
-    <div class = "collapse" id = "cri">
-        <div class = "row col-sm-12">
-            <!-- <div class="card col-sm-6">
-                <img class = "card-img" src = "https://cellphoneunlock.net/wp-content/uploads/2015/07/sizes-matters.png" alt="Card image">
-                <div class = "card-text">
-                    <h5>Screen Size</h5>
-                </div>
-            </div> -->
-            <div class="card text-white bg-info col-sm-4" style="max-height: 30rem;">
+    <div class="collapse" id="cri">
+        <div class="card-columns">
+
+            <!-- Screen Size -->
+            <div class="card">
                 <div class="card-header">Screen Size</div>
                 <div class="card-body">
-                  <h5 class="card-title">Your current screen size is : <p id = "size"></p>Do you want the screen size to be</h5>
-                  <p class="card-text"> 
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="screen" id="screen1" value=">" checked>
-                        <label class="form-check-label" for="screen1">
-                          (>) bigger than 
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="screen" id="screen2" value="<" checked>
-                        <label class="form-check-label" for="screen2">
-                          (<) less than 
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="screen" id="screen3" value="~" checked>
-                        <label class="form-check-label" for="screen3">
-                          (~) about the same as
-                        </label>
-                    </div>
-                    current  
+                    <h5 class="card-title">
+                        Your current screen size is <span id="size"></span>".<br /><br />
+                        Do you want the screen size to be
+                    </h5>
+                    <p class="card-text">
+                        <div class="custom-control custom-radio">
+                            <input class="custom-control-input" type="radio" name="screen" id="screen1" value=">">
+                            <label class="custom-control-label" for="screen1">larger than</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input class="custom-control-input" type="radio" name="screen" id="screen2" value="<">
+                            <label class="custom-control-label" for="screen2">less than</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input class="custom-control-input" type="radio" name="screen" id="screen3" value="~">
+                            <label class="custom-control-label" for="screen3">about the same as current</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input class="custom-control-input" type="radio" name="screen" id="screen4" value="/" checked>
+                            <label class="custom-control-label" for="screen4">No preferences</label>
+                        </div>
                     </p>
                 </div>
             </div>
-            <div class="card bg-light col-sm-4">
-                <div class="card-header">Header</div>
+
+            <!-- Fingerprint Authentication -->
+            <div class="card">
+                <div class="card-header">Fingerprint Authentication</div>
                 <div class="card-body">
-                  <h5 class="card-title">Info card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">
+                        Your current phone <span id="fingerprint"></span> fingerprint authentication.<br /><br />
+                        Do you want the fingerprint function?
+                    </h5>
+                    <p class="card-text">
+                        <div class="custom-control custom-radio">
+                            <input class="custom-control-input" type="radio" name="fingerprint" id="fingerprint1" value="true">
+                            <label class="custom-control-label" for="fingerprint1">Yes</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input class="custom-control-input" type="radio" name="fingerprint" id="fingerprint2" value="false">
+                            <label class="custom-control-label" for="fingerprint2">No</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input class="custom-control-input" type="radio" name="fingerprint" id="fingerprint3" value="/" checked>
+                            <label class="custom-control-label" for="fingerprint3">No preferences</label>
+                        </div>
+                    </p>
                 </div>
             </div>
-            <div class="card text-white bg-danger col-sm-4">
-                 <div class="card-header">Header</div>
+
+            <!-- Dual SIM -->
+            <div class="card">
+                <div class="card-header">Dual SIM Support</div>
                 <div class="card-body">
-                <h5 class="card-title">Info card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">
+                        Your current phone <span id="dualsim"></span> Dual SIM.<br /><br />
+                        Do you want the Dual SIM function?
+                    </h5>
+                    <p class="card-text">
+                        <div class="custom-control custom-radio">
+                            <input class="custom-control-input" type="radio" name="dualsim" id="dualsim1" value="true">
+                            <label class="custom-control-label" for="dualsim1">Yes</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input class="custom-control-input" type="radio" name="dualsim" id="dualsim2" value="false">
+                            <label class="custom-control-label" for="dualsim2">No</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input class="custom-control-input" type="radio" name="dualsim" id="dualsim3" value="/" checked>
+                            <label class="custom-control-label" for="dualsim3">No preferences</label>
+                        </div>
+                    </p>
                 </div>
-                </div>
-        </div>  
-        <br>
-        <input type = "submit" value = "Find my phone!" name = "find" id = "find" class = "btn  btn-dark">
+            </div>
 
+            <!-- External Storage -->
+            <div class="card">
+                <div class="card-header">External Storage</div>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Your current phone <span id="microsd"></span> MicroSD.<br /><br />
+                        Do you want the phone support MicroSD?
+                    </h5>
+                    <p class="card-text">
+                        <div class="custom-control custom-radio">
+                            <input class="custom-control-input" type="radio" name="microsd" id="microsd1" value="true">
+                            <label class="custom-control-label" for="microsd1">Yes</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input class="custom-control-input" type="radio" name="microsd" id="microsd2" value="false">
+                            <label class="custom-control-label" for="microsd2">No</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input class="custom-control-input" type="radio" name="microsd" id="microsd3" value="/" checked>
+                            <label class="custom-control-label" for="microsd3">No preferences</label>
+                        </div>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Battery Capacity -->
+            <div class="card">
+                <div class="card-header">Battery Capacity</div>
+                <div class="card-body">
+                    <h5 class="card-title">Your current phone has a <span id="battery"></span> mAh battery.<br /><br />
+                        Do you want the battery size to be</h5>
+                    <p class="card-text">
+                        <div class="custom-control custom-radio">
+                            <input class="custom-control-input" type="radio" name="battery" id="battery1" value=">">
+                            <label class="custom-control-label" for="battery1">Larger or same as current phone</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input class="custom-control-input" type="radio" name="battery" id="battery2" value="/" checked>
+                            <label class="custom-control-label" for="battery2">No preferences</label>
+                        </div>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Operating System -->
+            <div class="card">
+                <div class="card-header">Operating System</div>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Your current phone is running <span id="os"></span>.<br /><br />
+                        Do you want the operating system to be
+                    </h5>
+                    <p class="card-text">
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" name="os" id="os1" value="iOS" checked>
+                            <label class="custom-control-label" for="os1">iOS</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" name="os" id="os2" value="Android" checked>
+                            <label class="custom-control-label" for="os2">Android</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" name="os" id="os3" value="BlackBerry" checked>
+                            <label class="custom-control-label" for="os3">BlackBerry OS</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" name="os" id="os4" value="Windows" checked>
+                            <label class="custom-control-label" for="os4">Windows Phone</label>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <input type="submit" value="Find my phone!" name="find" id="find" class="btn btn-primary btn-lg btn-block">
+        </div>
+        <br />
     </div>
-  
-    </form>
-    <script>
-        
-        $("#drop").on("change", function(){
-            var brand = $(this).val();
 
-            // get model of selected brand
-            $.ajax({
-                url: '/ajax/getmodel/',
-                data: {
-                    "brand" : brand
-                },
-                dataType: 'json',
-                success: function(data){
-                    console.log("received data and printing it out like\n");
-                    var m = document.getElementById("model"); 
-                    while (m.lastChild){
-                        if(m.lastChild.value == "default"){
-                            break;}
-                        m.removeChild(m.lastChild);
+</form>
+<script>
+
+    $("#drop").on("change", function () {
+        var brand = $(this).val();
+
+        // get model of selected brand
+        $.ajax({
+            url: '/ajax/getmodel/',
+            data: {
+                "brand": brand
+            },
+            dataType: 'json',
+            success: function (data) {
+                console.log("received data and printing it out like\n");
+                var m = document.getElementById("model");
+                while (m.lastChild) {
+                    if (m.lastChild.value == "default") {
+                        break;
                     }
-                    console.log(data);
-                    var result = JSON.parse(data);
-                    // console.log(result[1].fields.Model);
-                    result.forEach(function(opt){
-                        console.log(opt.fields.Model);
-                        var tempopt = document.createElement("option");
-                        tempopt.value = opt.pk;
-                        tempopt.innerHTML = opt.fields.Model;
-                        $("#model").append(tempopt);
-                    })
-                    $("#mlist").collapse();
+                    m.removeChild(m.lastChild);
                 }
-            });
-
+                console.log(data);
+                var result = JSON.parse(data);
+                // console.log(result[1].fields.Model);
+                result.forEach(function (opt) {
+                    console.log(opt.fields.Model);
+                    var tempopt = document.createElement("option");
+                    tempopt.value = opt.pk;
+                    tempopt.innerHTML = opt.fields.Model;
+                    $("#model").append(tempopt);
+                })
+                $("#mlist").collapse();
+            }
         });
 
-        $("#model").on("change", function(){
-            var pk = $(this).val();
-            console.log(pk);
-            // optional showing user the current info
-            var brand = "Apple";
-            $.ajax({
-                url: '/ajax/getmcontent',
-                data: {
-                    "pk" : pk
-                },
-                dataType: 'json',
-                success: function(data){
-                    console.log("received data and printing it out like\n");
-                    console.log(data);
-                    var result = JSON.parse(data);
-                    console.log(result[0].fields.Screen_size);
-                    document.getElementById("size").innerHTML = result[0].fields.Screen_size;
-    
-                }
-            });
+    });
 
-            $("#cri").collapse();
-        
-        })
-    </script>
-    </form>
-    
+    $("#model").on("change", function () {
+        var pk = $(this).val();
+        console.log(pk);
+        // optional showing user the current info
+        var brand = "Apple";
+        $.ajax({
+            url: '/ajax/getmcontent',
+            data: {
+                "pk": pk
+            },
+            dataType: 'json',
+            success: function (data) {
+                console.log("received data and printing it out like\n");
+                console.log(data);
+                var result = JSON.parse(data);
+                console.log(result[0].fields.Screen_size);
+
+                document.getElementById("size").innerHTML = result[0].fields.Screen_size;
+                document.getElementById("fingerprint").innerHTML = (result[0].fields.Fingerprint_Authentication ? "support" : "do not support");
+                document.getElementById("dualsim").innerHTML =(result[0].fields.Dual_Sim_card ? "support" : "do not support");
+                document.getElementById("microsd").innerHTML = (result[0].fields.Micro_sd ? "support" : "do not support");
+                document.getElementById("battery").innerHTML = result[0].fields.Battery_Capacity;
+                document.getElementById("os").innerHTML = result[0].fields.Operating_System;
+
+
+            }
+        });
+
+        $("#cri").collapse();
+
+    })
+</script>
+</form>
+
 
 
 {% endblock %}
