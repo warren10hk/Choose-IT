@@ -18,8 +18,6 @@ import json
 from django.core import serializers
 # Create your views here.
 
-def listfunc(req):
-    return render(req, "listofphones.html")
 
 # returning content of model
 def returnmcontent(req):
