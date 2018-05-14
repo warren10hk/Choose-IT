@@ -17,6 +17,7 @@ import requests
 import json
 from django.core import serializers
 import urllib
+import lxml.html
 from rating.models import Rating
 from phone.models import Phone
 from appuser.models import Appuser
@@ -101,10 +102,24 @@ def displayone(req, pid):
         userobj = Appuser.objects.get(user = req.user)
         r = req.POST.get("rate")
         print (r)
-        Rating.objects.create(uid = userobj, pid = phoneobj, rate = r)
+        try:
+            tryrate = Rating.objects.get(uid = userobj, pid = phoneobj)
+            # already exist, change the record
+            tryrate.rate = r
+            tryrate.save()
+        except:
+            # does not exist
+            Rating.objects.create(uid = userobj, pid = phoneobj, rate = r)
     #phone object exist
 
     # crawling youtube related videos list
+    if req.user.is_authenticated:
+        userobj = Appuser.objects.get(user = req.user)
+        try:
+            rateobj = Rating.objects.get(uid = userobj, pid = phoneobj)
+        except:
+            rateobj = None
+
     initial = "https://www.youtube.com/results?search_query="
     keyword = phoneobj.Model.replace(" ", "+")
     print ("keyword is " + keyword)
@@ -112,13 +127,16 @@ def displayone(req, pid):
     page = search.text
     soup = bs(page, 'html.parser')
     result = soup.findAll('a', attrs={'class':'yt-uix-tile-link'})
+    title = soup.findAll('a', attrs={'class': 'ytp-title-link yt-uix-sessionlink'})
+    print (title)
     linklist = []
     # con = ssl._create_unverified_context()
     for link in result:
         cur = 'https://www.youtube.com' + link['href']
+        title = link["title"]
         vidid = link['href'].split("watch?v=", 1)[1]
         # html = bs(urllib.request.urlopen(cur, context=con))
-        linklist.append((cur, vidid))
+        linklist.append((cur, vidid, title))
 
     # get only first 10 results
     linklist = linklist[:10]
@@ -133,7 +151,8 @@ def displayone(req, pid):
         "accstatus" : req.user.is_authenticated,
         "phoneinfo" : phoneobj,
         # crawled list of youtube videos, havent thought of how to display in the individual page NOT DONE!
-        "utube" : linklist
+        "utube" : linklist,
+        "rate" : rateobj
     }
     return render(req, "displayphone.html", ctx)
 

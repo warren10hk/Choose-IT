@@ -32,12 +32,12 @@
                 <p class = "card-text">
                 <table class = "table table-striped table-hover" style="height:inherit;width:inherit;">
                     <tbody>
-                        {% for link, id in utube %}
+                        {% for link, id, title in utube %}
                         <tr>
                             <td>
                                  <a href = '{{ link }}' target="_blank"><img src = "https://img.youtube.com/vi/{{ id }}/0.jpg" style = "height:150px;"></a>
                             </td>
-                            <td>{{ link }}</td>
+                            <td>{{ title }}</td>
                             </a>
                         </tr>
                         {% endfor %}
@@ -51,6 +51,7 @@
     <div class = "card" style = "height:30%">
     <p class = "card-text">
         <br>
+        <p>Rate is set as 0 by default, click on smiley faces and submit to rate us!</p>
         <form method = "POST" id = "smile">
              <i dataval = "1" class="fa fa-smile-o" style="font-size:50px"></i>
              <i dataval = "2" class="fa fa-smile-o" style="font-size:50px"></i>
@@ -60,7 +61,11 @@
              <!-- <input id = "rate" type = "number" value = 1>  -->
              <br>
              <input class = "btn btn-primary" type = "submit" value = "Rate now!"> 
-             <input id = "rate" name = "rate" type = "number" value = 1 style = "visibility: hidden;">
+             {% if rate %}
+             <input id = "rate" name = "rate" type = "number" value = {{ rate.rate }} style = "visibility: hidden;">
+             {% elif not rate %}
+             <input id = "rate" name = "rate" type = "number" value = 0 style = "visibility: hidden;">
+             {% endif %}
         </form>
     </p>
     </div>
