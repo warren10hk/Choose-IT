@@ -1,10 +1,3 @@
-appuser/__pycache__/
-chooseit/__pycache__/
-phone/__pycache__/
-rating/__pycache__/
-rating/migrations/__pycache__/
-appuser/*.pyc
-chooseit/*.pyc
-phone/*.pyc
-rating/*.pyc
+__pycache__/
+*.pyc
 db.sqlite3
