@@ -57,27 +57,45 @@ def filterfunc(req):
         # should access form info here
         # here it reads the filter value which can further trigger Phone.object.filter(Screen_size = variable)
 
-        # print (req.POST.get("os"))
+        print (req.POST.get("ios"))
+        print (req.POST.get("android"))
 
-        filtering = "Phone.objects.filter("
+        
+        criteria = []
+
         if (req.POST.get("screen") == ">"):
-            filtering += ("Screen_size__gte=" + "0")
+            criteria.append("Screen_size__gte=" + "0")
         elif (req.POST.get("screen") == "<"):
-            filtering += ("Screen_size__lte=" + "0")
+            criteria.append("Screen_size__lte=" + "0")
         elif (req.POST.get("screen") == "="):
-            filtering += ("Screen_size=" + "0")
+            criteria.append("Screen_size=" + "0")
 
-        filtering += (", Fingerprint_Authentication" + "=" + req.POST.get("fingerprint")) if (req.POST.get("fingerprint") != "/") else ""
-        filtering += (", Dual_Sim_card" + "=" + req.POST.get("dualsim")) if (req.POST.get("dualsim") != "/") else ""
-        filtering += (", Micro_sd" + "=" + req.POST.get("microsd")) if (req.POST.get("microsd") != "/") else ""
+        criteria.append("Fingerprint_Authentication" + "=" + req.POST.get("fingerprint")) if (req.POST.get("fingerprint") != "/") else ""
+        criteria.append("Dual_Sim_card" + "=" + req.POST.get("dualsim")) if (req.POST.get("dualsim") != "/") else ""
+        criteria.append("Micro_sd" + "=" + req.POST.get("microsd")) if (req.POST.get("microsd") != "/") else ""
+
         if (req.POST.get("battery") == ">"):
-            filtering += (", Battery_Capacity__gte=" + "0") if (req.POST.get("battery") != "/") else ""
-        # filtering += ("Operating_System" + "=" + req.POST.get("os")) if (req.POST.get("os") != "/") else ""
-        filtering += ")"
+            criteria.append("Battery_Capacity__gte=" + "0") if (req.POST.get("battery") != "/") else ""
 
+        if (req.POST.get("ios") or req.POST.get("android") or req.POST.get("bb") or req.POST.get("wp")):
+            os_list = []
+            if req.POST.get("ios") is not None:
+                os_list.append("iOS")
+            if req.POST.get("android") is not None:
+                os_list.append("Android")
+            if req.POST.get("bb") is not None:
+                os_list.append("BlackBerry OS")
+            if req.POST.get("wp") is not None:
+                os_list.append("Windows Phone")
+            criteria.append("Operating_System__in="+str(os_list))
+                    
+        filtering = "print (Phone.objects.filter(" + ", ".join(criteria) + ")[:10])"
+
+        print (filtering)
         exec(filtering)
         
         return redirect('/')
+        
     modeltype = list(Phone.objects.order_by().values_list('Brand').distinct())
     modeltype = [rem[0] for rem in modeltype]
     ctx = {
