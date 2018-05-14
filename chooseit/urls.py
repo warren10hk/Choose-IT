@@ -18,6 +18,7 @@ from django.contrib import admin
 from . import views
 from appuser import views as appview
 from phone import views as phoneview
+from estrating import views as estratingview
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -33,5 +34,6 @@ urlpatterns = [
     url(r'^allphones/', phoneview.returnall),
     url(r'^ajax/getmodel/$', phoneview.returnmodel),
     url(r'^ajax/getmcontent/$',phoneview.returnmcontent),
-    url(r'^ajax/getallmodel',phoneview.returnallmodel)
+    url(r'^ajax/getallmodel',phoneview.returnallmodel),
+    url(r'^estimaterating/',estratingview.estimateRating)
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

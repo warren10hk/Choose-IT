@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'appuser',
     'phone',
     'rating',
+    'estrating',
     'bootstrap4',
 ]
 
