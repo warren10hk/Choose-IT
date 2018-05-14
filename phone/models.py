@@ -191,10 +191,10 @@ class Phone(models.Model):
     Fingerprint_Authentication = models.BooleanField(
         blank = True
     )
-    Picture = models.ImageField(
-        default = "default.png",
+    Picture = models.CharField(
         blank = True,
-        upload_to = dirtoup
+        max_length = 250,
+        default = "/media/default.png"
     )
 
     def nameit(self):

@@ -21,10 +21,27 @@ import lxml.html
 from rating.models import Rating
 from phone.models import Phone
 from appuser.models import Appuser
+from django.db.models import Q
 
 # import ssl
 # Create your views here.
-
+def returnall(req):
+    if req.method == "POST":
+        keyword = req.POST.get('searchkeyword')
+        # get all the attribute names
+        # attr = [obj.name for obj in Phone._meta.get_fields()] 
+        # ty = [Phone._meta.get_field(name).get_internal_type for name in attr]
+        # print (ty)
+        thelist = Phone.objects.filter(Q(Model__icontains = keyword))
+    else:
+        keyword = None
+        thelist = Phone.objects.all().order_by("Brand")
+    ctx= {
+        "accstatus" : req.user.is_authenticated,
+        "list" : thelist,
+        "keyword" : keyword
+    }
+    return render(req, "listofphones.html", ctx)
 # returning all model name in list for autocomplete
 def returnallmodel(req):
     model_s = []
@@ -131,12 +148,13 @@ def displayone(req, pid):
     #phone object exist
 
     # crawling youtube related videos list
+    rateobj = None
     if req.user.is_authenticated:
         userobj = Appuser.objects.get(user = req.user)
         try:
             rateobj = Rating.objects.get(uid = userobj, pid = phoneobj)
         except:
-            rateobj = None
+            pass
 
     initial = "https://www.youtube.com/results?search_query="
     keyword = phoneobj.Model.replace(" ", "+")
