@@ -73,11 +73,7 @@ def filterfunc(req):
     if req.method == "POST":
         # should access form info here
         # here it reads the filter value which can further trigger Phone.object.filter(Screen_size = variable)
-
-        print (req.POST.get("ios"))
-        print (req.POST.get("android"))
-
-        
+       
         criteria = []
 
         if (req.POST.get("screen") == ">"):
@@ -105,13 +101,22 @@ def filterfunc(req):
             if req.POST.get("wp") is not None:
                 os_list.append("Windows Phone")
             criteria.append("Operating_System__in="+str(os_list))
-                    
-        filtering = "print (Phone.objects.filter(" + ", ".join(criteria) + ")[:10])"
 
-        print (filtering)
+        result = None
+        filtering = "Phone.objects.filter(" + ", ".join(criteria) + ")[:3]"
         exec(filtering)
+
+        # exec function is not working!
+        result = Phone.objects.filter(Screen_size__gte=0, Dual_Sim_card=True, Operating_System__in=['iOS', 'Android', 'BlackBerry OS', 'Windows Phone'])[:3]
         
-        return redirect('/')
+        ctx = {
+            'accstatus' : req.user.is_authenticated,
+            'list' : result,
+            'current' : req.POST.get("model")
+        }
+        return render(req, 'filterresult.html', ctx)
+
+        # return redirect('/')
         
     modeltype = list(Phone.objects.order_by().values_list('Brand').distinct())
     modeltype = [rem[0] for rem in modeltype]
