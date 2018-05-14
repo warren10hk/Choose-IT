@@ -69,7 +69,13 @@ def estimateRating(req):
                 except ZeroDivisionError:
                     est_rating[target][index] = None
 
-    print (est_rating)
-    
+    # print (est_rating)
+
+    # Save data to database, failed
+    # for (i, phone) in enumerate(est_rating):
+    #     for (j, user_rating) in enumerate(phone):
+    #         if user_rating is not None:
+    #             book = ESTRating(Uid=j, Pid=i, Rate=user_rating)
+    #             book.save()
     
     return render(req, "index.html", {})
