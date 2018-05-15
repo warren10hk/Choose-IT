@@ -73,22 +73,24 @@ def filterfunc(req):
     if req.method == "POST":
         # should access form info here
         # here it reads the filter value which can further trigger Phone.object.filter(Screen_size = variable)
-       
+         
+        current_phone_data = Phone.objects.filter(pk = req.POST.get("modelname")).values('Screen_size', 'Battery_Capacity')
+        
         criteria = []
 
         if (req.POST.get("screen") == ">"):
-            criteria.append("Screen_size__gte=" + "0")
+            criteria.append("Screen_size__gte=" + str(current_phone_data[0]['Screen_size']))
         elif (req.POST.get("screen") == "<"):
-            criteria.append("Screen_size__lte=" + "0")
+            criteria.append("Screen_size__lte=" + str(current_phone_data[0]['Screen_size']))
         elif (req.POST.get("screen") == "="):
-            criteria.append("Screen_size=" + "0")
+            criteria.append("Screen_size=" + current_phone_data[0]['Screen_size'])
 
         criteria.append("Fingerprint_Authentication" + "=" + req.POST.get("fingerprint")) if (req.POST.get("fingerprint") != "/") else ""
         criteria.append("Dual_Sim_card" + "=" + req.POST.get("dualsim")) if (req.POST.get("dualsim") != "/") else ""
         criteria.append("Micro_sd" + "=" + req.POST.get("microsd")) if (req.POST.get("microsd") != "/") else ""
 
         if (req.POST.get("battery") == ">"):
-            criteria.append("Battery_Capacity__gte=" + "0") if (req.POST.get("battery") != "/") else ""
+            criteria.append("Battery_Capacity__gte=" + str(current_phone_data[0]['Battery_Capacity'])) if (req.POST.get("battery") != "/") else ""
 
         if (req.POST.get("ios") or req.POST.get("android") or req.POST.get("bb") or req.POST.get("wp")):
             os_list = []
@@ -103,20 +105,18 @@ def filterfunc(req):
             criteria.append("Operating_System__in="+str(os_list))
 
         result = None
-        filtering = "Phone.objects.filter(" + ", ".join(criteria) + ")[:3]"
-        exec(filtering)
-
+        filtering = "result = Phone.objects.filter(" + ", ".join(criteria) + ").order_by('-Year')[:3]"
+        loc = {}
+        exec(filtering, globals(), loc)
         # exec function is not working!
-        result = Phone.objects.filter(Screen_size__gte=0, Dual_Sim_card=True, Operating_System__in=['iOS', 'Android', 'BlackBerry OS', 'Windows Phone'])[:3]
+        # result = Phone.objects.filter(Screen_size__gte=0, Dual_Sim_card=True, Operating_System__in=['iOS', 'Android', 'BlackBerry OS', 'Windows Phone'])[:3]
         
         ctx = {
             'accstatus' : req.user.is_authenticated,
-            'list' : result,
+            'list' : loc['result'],
             'current' : req.POST.get("model")
         }
         return render(req, 'filterresult.html', ctx)
-
-        # return redirect('/')
         
     modeltype = list(Phone.objects.order_by().values_list('Brand').distinct())
     modeltype = [rem[0] for rem in modeltype]
