@@ -7,10 +7,7 @@ We aim at helping users to choose the best fit IT products without knowing any t
 
 ## Installation
 ```
-pip3 install django
-pip3 install django-bootstrap4
-pip3 install beautifulsoup4
-pip3 install lxml
+pip3 install django django-bootstrap4 beautifulsoup4 lxml
 ```
 ## DB Migration
 ```
