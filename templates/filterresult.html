@@ -4,10 +4,10 @@
 
 <p>Below are the filtered results of phones in our database!</p>
 <br>
-<div class="card-deck-wrapper">
-    <div class="card-deck " style="display:flex; flex-wrap:wrap;">
+<div class="card-deck-wrapper container">
+    <div class="card-deck" style="display:flex; flex-wrap:wrap;">
         {% for obj in list %}
-        <div class="card" style="flex: 1 0 15%;margin: 10px;height:300px;">
+        <div class="card" style="flex: 1 0 15%; margin: 10px; height:300px; max-width: 200px;">
             <a href="/phonedis/{{ obj.pk }}">
                 <div class="card" style="height:200px; width:inherit;">
                     <img class="card-img-top" src="{{ obj.Picture }}" style="height:100%; width:auto inherit; display: block; margin-left: auto; margin-right: auto;">

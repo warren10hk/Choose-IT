@@ -105,7 +105,7 @@ def filterfunc(req):
             criteria.append("Operating_System__in="+str(os_list))
 
         result = None
-        filtering = "result = Phone.objects.filter(" + ", ".join(criteria) + ").order_by('-Year')[:3]"
+        filtering = "result = Phone.objects.filter(" + ", ".join(criteria) + ").order_by('-Year')[:5]"
         loc = {}
         exec(filtering, globals(), loc)
         # exec function is not working!
