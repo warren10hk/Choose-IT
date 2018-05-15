@@ -4,20 +4,26 @@
 
 <p>Below are the filtered results of phones in our database!</p>
 <br>
-<div class = "card-deck-wrapper">
-    <div class="card-deck " style = "display:flex; flex-wrap:wrap;">
-    {% for obj in list %}
-        <div class="card" style = "flex: 1 0 15%;margin: 10px;height:300px;">
-            <a href = "/phonedis/{{ obj.pk }}">
-                <div class = "card" style = "height:200px; width:inherit;">
-                    <img class="card-img-top" src="{{ obj.Picture }}" style = "height:100%; width:auto inherit; display: block; margin-left: auto; margin-right: auto;">
+<div class="card-deck-wrapper">
+    <div class="card-deck " style="display:flex; flex-wrap:wrap;">
+        {% for obj in list %}
+        <div class="card" style="flex: 1 0 15%;margin: 10px;height:300px;">
+            <a href="/phonedis/{{ obj.pk }}">
+                <div class="card" style="height:200px; width:inherit;">
+                    <img class="card-img-top" src="{{ obj.Picture }}" style="height:100%; width:auto inherit; display: block; margin-left: auto; margin-right: auto;">
                 </div>
-            <div class="card-body">
-            <h5 class="card-title">{{ obj.Model }}</h5>
+                <div class="card-body">
+                    <h5 class="card-title">{{ obj.Model }}</h5>
             </a>
             </div>
         </div>
-    {% endfor %}
+        {% empty %}
+        <div class="container">
+            <h2>No results.</h2>
+            <button type="button" onclick="window.history.back();" class="btn btn-warning">Try Again</button>
+        </div>
+        {% endfor %}
     </div>
-  </div>
+</div>
+
 {% endblock %}
