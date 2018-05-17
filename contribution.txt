@@ -1,0 +1,4 @@
+101427 author warren10hk
+1452 author toffclc
+
+The workload distribution for the devlopment of application  among the two members are roughly 1:1. The significantly larger contribution of LOC of warren10hk is the result of him pushing and forking the original framework of react-native-app at the very beginning. We, however, switched to django later on so those large LOC are removed and can be seen from git commit record. The pattern can be observed on the insight page of the github and we welcome questions if needed.
