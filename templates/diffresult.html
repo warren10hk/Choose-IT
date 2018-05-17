@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="jumbotron text-center">
+        <h1>Compare phones!</h1>
+        <h5>Select 2 phones from the search bar below and see which one outruns another!</h5>
+        <p>The following is the comparison result of</p>
+        <h4>{{ a.Model }} vs {{ b.Model }}</h4>
+    </div>
+    <div class = "row">
+            <div class = "col-sm-6">
+                    <div class = "card">
+                        <div clss = "card" style = "height: 350px;">
+                            <img class = "card-img-top" src = "{{ a.Picture }}" style = "height:100%; width:auto; display: block; margin-left: auto; margin-right:auto ">
+                        </div>
+                        <!-- <img class = "card-img-top" src = "{{phoneinfo.Picture}}" style = "height:50px"> -->
+                        <div class = "card-body">
+                            <h3>{{a.Model}}</h3>
+                            <p class = "card-text">
+                                <table class = "table">
+                                    <thead><tr><th scope = "col">Properties</th><th>Value</th></tr></thead>
+                                    <tbody>
+                                        {% for name, val in a.nameit %}
+                                        <tr style="line-height: 15px; height: 15px;" >
+                                            {% if not name == 'pid' and not name == 'Picture' %}
+                                            <th scope = "row">{{ name }}</th>
+                                            {% if val == "True" %}
+                                            <td bgcolor = "lawngreen">{{ val }}</td>
+                                            {% else %}
+                                            <td>{{ val }}</td>
+                                            {% endif %}
+                                            {% endif %}
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class = "col-sm-6">
+                        <div class = "card">
+                            <div clss = "card" style = "height: 350px;">
+                                <img class = "card-img-top" src = "{{ b.Picture }}" style = "height:100%; width:auto; display: block; margin-left: auto; margin-right:auto ">
+                            </div>
+                            <!-- <img class = "card-img-top" src = "{{phoneinfo.Picture}}" style = "height:50px"> -->
+                            <div class = "card-body">
+                                <h3>{{b.Model}}</h3>
+                                <p class = "card-text">
+                                    <table class = "table">
+                                        <thead><tr><th scope = "col">Properties</th><th>Value</th></tr></thead>
+                                        <tbody>
+                                            {% for name, val in b.nameit %}
+                                            <tr style="line-height: 15px; height: 15px;">
+                                                {% if not name == 'pid' and not name == 'Picture' %}
+                                                <th scope = "row">{{ name }}</th>
+                                                {% if val == "True" %}
+                                                <td bgcolor = "lawngreen">{{ val }}</td>
+                                                {% else %}
+                                                <td>{{ val }}</td>
+                                                {% endif %}
+                                                {% endif %}
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+
+{% endblock %}

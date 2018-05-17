@@ -25,6 +25,36 @@ from django.db.models import Q
 
 # import ssl
 # Create your views here.
+
+def returnpic(req):
+    pk = req.GET.get('pk', None)
+    model = Phone.objects.filter(pid = pk)
+    print (model)
+    model_s = serializers.serialize('json', list(model), fields =('Picture'))
+    return JsonResponse(model_s, safe=False)
+
+def diff(req):
+    if req.method == "POST":
+        modela = Phone.objects.get(pid = req.POST.get('onem') )
+        modelb = Phone.objects.get(pid = req.POST.get('twom') )
+        attr = [obj.name for obj in Phone._meta.get_fields()] 
+        print (modela)
+        print (modelb)
+        models = [attr, modela, modelb]
+        ctx = {
+            "accstatus" : req.user.is_authenticated,
+            "a" : modela,
+            "b" : modelb
+        }
+        return render(req, "diffresult.html", ctx)
+
+    brands = list(Phone.objects.order_by().values_list('Brand').distinct())
+    brands = [rem[0] for rem in brands]
+    ctx ={
+        "accstatus" : req.user.is_authenticated,
+        "brandlist" : brands
+    }
+    return render(req, "compare.html", ctx)
 def returnall(req):
     if req.method == "POST":
         keyword = req.POST.get('searchkeyword')

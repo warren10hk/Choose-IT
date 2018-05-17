@@ -32,6 +32,8 @@ urlpatterns = [
     url(r'^phonedis/(?P<pid>[-\d]+)$', phoneview.displayone),
     url(r'^filter/', phoneview.filterfunc),
     url(r'^allphones/', phoneview.returnall),
+    url(r'^diff/', phoneview.diff),
+    url(r'ajax/getpic', phoneview.returnpic),
     url(r'^ajax/getmodel/$', phoneview.returnmodel),
     url(r'^ajax/getmcontent/$',phoneview.returnmcontent),
     url(r'^ajax/getallmodel',phoneview.returnallmodel),

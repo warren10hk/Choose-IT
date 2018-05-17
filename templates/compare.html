@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<br><br> 
+<form method = "POST" enctype = "mutipart/form-data">
+<div class="jumbotron text-center">
+    <h1>Compare phones!</h1>
+    <h5>Select 2 phones from the search bar below and see which one outruns another!</h5>
+</div>
+<div class = "row">
+    <div class = "col-sm-6">
+            <h4>Brand</h4>
+            <select class="form-control drop" name="onef">
+                <option value="default" selected="True" disabled>Select Options ...</option>
+                {% for brand in brandlist %}
+                <option value='{{ brand }}'>{{ brand }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <br>
+            <div class="collapse" id="mlistone">
+                <h4>Phone Model</h4>
+                <select class="form-control model" name="onem" id="modelone">
+                    <option value="default" selected="True" disabled>Select Options ...</option>
+                </select>
+            </div>
+            <br>
+            <br>
+            <div class = "collapse"  id = "cardone">
+            <div class = "card">
+                <div class = "card-header">
+                   <h5>Product Image</h5>
+                </div>
+                <div class = "card" style = "height: 200px;">
+                    <img class = "card-img-top" id = "imageone" src = "#" style ="height:100%; width:auto; display: auto; margin-left: auto; margin-right:auto;">
+                </div>
+            </div>
+            </div>
+ </div>
+
+    <!-- another phone begins here -->
+    <div class = "col-sm-6">
+            <h4>Brand</h4>
+            <select class="form-control drop"  name = "twof">
+                <option value="default" selected="True" disabled>Select Options ...</option>
+                {% for brand in brandlist %}
+                <option value='{{ brand }}'>{{ brand }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <br>
+            <div class="collapse" id="mlisttwo">
+                <h4>Phone Model</h4>
+                <select class="form-control model" name="twom" id="modeltwo">
+                    <option value="default" selected="True" disabled>Select Options ...</option>
+                </select>
+            </div>
+            <br>
+            <br>
+            <div class = "collapse" id = "cardtwo">
+            <div class = "card">
+                    <div class = "card-header">
+                       <h5>Product Image</h5>
+                    </div>
+                    <div class = "card" style = "height: 200px;">
+                        <img class = "card-img-top" id = "imagetwo" src = "#" style ="height:100%; width:auto; display: auto; margin-left: auto;margin-right:auto;">
+                    </div>
+            </div>
+            </div>
+           
+        <script>
+        $(".model").on("change", function(){
+            // retrieving the image and showing 
+            var pk = $(this).val();
+            console.log(pk);
+
+            var order = this.name;
+            
+            $.ajax({
+                url: "/ajax/getpic",
+                data:{
+                    "pk" : pk
+                },
+                dataType: 'json',
+                success: function(data){
+                    console.log("received data and printin it out from model ajax");
+                    console.log(data);
+                    console.log(order);
+                    var whichcard;
+                    var result = JSON.parse(data);
+                    if(order == "onem"){
+                        console.log("telling one to collapse");
+                        whichcard = document.getElementById("imageone");
+                        // console.log(result[0].fields.Picture);
+                        whichcard.setAttribute('src', result[0].fields.Picture);
+                        $("#cardone").collapse();
+                    }else{
+                        console.log("telling two to collapse");
+                        whichcard = document.getElementById("imagetwo");
+                        whichcard.setAttribute('src', result[0].fields.Picture);
+                        $("#cardtwo").collapse();
+                        
+                    }
+
+                }
+            });
+
+
+        });
+
+
+        $(".drop").on("change", function () {
+            var brand = $(this).val();
+            var order = this.name
+            console.log(brand);
+            // get model of selected brand
+            $.ajax({
+                url: '/ajax/getmodel/',
+                data: {
+                    "brand": brand
+                },
+                dataType: 'json',
+                success: function (data) {
+                    console.log("received data and printing it out like\n");
+                    // console.log(data);
+                    console.log(order);
+                    var m;
+                    if(order == "onef"){
+                        m = document.getElementById("modelone");
+                    }else{
+                        m = document.getElementById("modeltwo");
+                    }
+                    console.log(m);
+                    // var m = document.getElementById("model");
+                    while (m.lastChild) {
+                        if (m.lastChild.value == "default") {
+                            break;
+                        }
+                        m.removeChild(m.lastChild);
+                    }
+                    var result = JSON.parse(data);
+                    // console.log(result[1].fields.Model);
+                    result.forEach(function (opt) {
+                        console.log(opt.fields.Model);
+                        var tempopt = document.createElement("option");
+                        tempopt.value = opt.pk;
+                        tempopt.innerHTML = opt.fields.Model;
+                        m.append(tempopt);
+                    })
+                    if(order == "onef"){
+                        $("#mlistone").collapse();
+                    }else{
+                        $("#mlisttwo").collapse();
+                        console.log("is hereee");
+                    }
+                }
+            });
+
+    });
+
+
+
+
+
+        </script>
+</div>
+<div class = "row col-sm-12" style = "height: 50px;"></div>
+<div class = "row col-sm-12">
+    <div class = "jumbotron col-sm-12" style = "text-align:center">
+        <input class ="btn primary-btn" type = "submit" value = "Compare them now">
+    </div>
+</div>
+</form>
+
+
+
+   
+{% endblock %}
