@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'phone',
     'rating',
     'estrating',
-    'multiforloop',
     'bootstrap4'
 ]
 
